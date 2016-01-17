@@ -6,6 +6,7 @@ gem 'padrino', '~> 0.13.0'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'cucumber'
@@ -14,4 +15,5 @@ group :development, :test do
   gem 'rspec'
   gem 'dm-rspec'
   gem 'database_cleaner'
+  gem 'pry'
 end
