@@ -4,4 +4,6 @@ class Course
   property :id, Serial
   property :title, String
   property :description, Text
+
+  has n, :deliveries
 end

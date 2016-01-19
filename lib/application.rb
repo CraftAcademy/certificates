@@ -1,9 +1,12 @@
 require 'sinatra/base'
 require 'padrino-helpers'
 require 'data_mapper'
-require 'pry'
+if ENV['RACK_ENV'] != 'production'
+  require 'pry'
+end
 require './lib/course'
 require './lib/user'
+require './lib/delivery'
 
 class WorkshopApp < Sinatra::Base
   register Padrino::Helpers
@@ -57,6 +60,17 @@ class WorkshopApp < Sinatra::Base
 
   post '/courses/create' do
     Course.create(title: params[:course][:title],description: params[:course][:description])
+    redirect 'courses/index'
+  end
+
+  get '/courses/:id/add_date', auth: :user do
+    @course = Course.get(params[:id])
+    erb :'courses/add_date'
+  end
+
+  post '/courses/new_date', auth: :user do
+    course = Course.get(params[:course_id])
+    course.deliveries.create(start_date: params[:start_date])
     redirect 'courses/index'
   end
 
