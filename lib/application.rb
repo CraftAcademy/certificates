@@ -9,6 +9,7 @@ require './lib/course'
 require './lib/user'
 require './lib/delivery'
 require './lib/student'
+require './lib/certificate'
 
 class WorkshopApp < Sinatra::Base
   include CSVParse
@@ -122,6 +123,15 @@ class WorkshopApp < Sinatra::Base
     #binding.pry
     delivery = Delivery.get(params[:id].to_i)
     CSVParse.import(params[:file][:tempfile], Student, delivery)
+    redirect "/courses/deliveries/show/#{delivery.id}"
+  end
+
+  get '/courses/generate/:id' do
+    delivery = Delivery.get(params[:id].to_i)
+    delivery.students.each do |student|
+      c = student.certificates.new(created_at: DateTime.now, delivery: delivery)
+      c.save
+    end
     redirect "/courses/deliveries/show/#{delivery.id}"
   end
 
