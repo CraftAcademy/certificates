@@ -11,6 +11,7 @@ gem 'prawn'
 gem 'rmagick'
 gem 'aws-sdk'
 gem 'dotenv'
+gem 'bitly'
 
 group :development, :test do
   gem 'cucumber'

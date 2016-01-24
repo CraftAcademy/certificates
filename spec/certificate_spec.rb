@@ -36,6 +36,14 @@ describe Certificate do
       expect(@certificate.delivery.start_date.to_s).to eq '2015-01-01'
     end
 
+    it 'returns #bitly_lookup' do
+      expect(@certificate.bitly_lookup).to eq "http://localhost:9292/verify/#{@certificate.identifier}"
+    end
+
+    it 'returns #stats' do
+      expect(@certificate.stats).to eq 0
+    end
+
     describe 'S3' do
       before do
         keys = CertificateGenerator.generate(@certificate)
