@@ -9,6 +9,8 @@ gem 'pg'
 gem 'bcrypt'
 gem 'prawn'
 gem 'rmagick'
+gem 'aws-sdk'
+gem 'dotenv'
 
 group :development, :test do
   gem 'cucumber'
