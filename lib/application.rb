@@ -13,7 +13,9 @@ require './lib/student'
 require './lib/certificate'
 
 class WorkshopApp < Sinatra::Base
-  Dotenv.load
+  if ENV['RACK_ENV'] != 'production'
+    Dotenv.load
+  end
   include CSVParse
   register Padrino::Helpers
   set :protect_from_csrf, true
