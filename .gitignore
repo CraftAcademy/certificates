@@ -1,2 +1,4 @@
 .env
 /assets/img/usr/*
+pdf/test/*
+.DS_Store
