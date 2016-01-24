@@ -51,7 +51,7 @@
     background-color: #6F7072;
 }
 
-.top-bar-section ul li > p {
+.top-bar-section ul li > p, a {
     color: #FFFFFF;
     background-color: #6F7072;
     display: block;
