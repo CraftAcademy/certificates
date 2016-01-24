@@ -65,16 +65,7 @@
 }
 
 .top-bar-section ul li > a {
-    color: #FFFFFF;
-    background-color: #6F7072;
-    display: block;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-    font-size: 0.8125rem;
-    font-weight: normal;
-    text-transform: none;
-    line-height: 2.8125rem;
-    width: 100%;
-    margin-bottom: 0;
+    background-color: #6F7072 !important;
 }
 
 .link {
