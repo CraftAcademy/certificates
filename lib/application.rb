@@ -28,6 +28,22 @@ class WorkshopApp < Sinatra::Base
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
+  configure :development do
+   Sinatra::Application.reset!
+   use Rack::Reloader
+ end
+
+ ::Logger.class_eval { alias :write :'<<' }
+ access_log = ::File.join(::File.dirname(::File.expand_path(__FILE__)), '..', 'log', 'access.log')
+ access_logger = ::Logger.new(access_log)
+ error_logger = ::File.new(::File.join(::File.dirname(::File.expand_path(__FILE__)), '..', 'log', 'error.log'), 'a+')
+ error_logger.sync = true
+
+ configure do
+   use ::Rack::CommonLogger, access_logger
+ end
+
+
   before do
     @user = User.get(session[:user_id]) unless is_user?
   end
