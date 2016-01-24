@@ -139,7 +139,7 @@ class WorkshopApp < Sinatra::Base
       session[:flash] = 'Certificates has already been generated'
     else
       delivery.students.each do |student|
-        binding.pry
+        #binding.pry
         cert = student.certificates.create(created_at: DateTime.now, delivery: delivery)
         keys = CertificateGenerator.generate(cert)
         cert.update(certificate_key: keys[:certificate_key], image_key: keys[:image_key])
