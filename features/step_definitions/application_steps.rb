@@ -39,7 +39,7 @@ Given(/^the course "([^"]*)" is created$/) do |name|
     And I click "All cohorts" link
     And I click "Create course" link
     And I fill in "Course Title" with "#{name}"
-    And I fill in "Course description" with "Your first step into the world of programming"
+    And I fill in "Course description" with "A 12 Week Full-Stack Web Developer Programme"
     And I click "Create" link
   )
 end

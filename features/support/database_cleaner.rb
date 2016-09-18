@@ -5,6 +5,6 @@ DatabaseCleaner.strategy = :truncation
 
 Around do |scenario, block|
   DatabaseCleaner.cleaning(&block)
-  FileUtils.rm_rf Dir['pdf/test/**/*.pdf']
-  FileUtils.rm_rf Dir['pdf/test/**/*.jpg']
+ # FileUtils.rm_rf Dir['pdf/test/**/*.pdf']
+ # FileUtils.rm_rf Dir['pdf/test/**/*.jpg']
 end

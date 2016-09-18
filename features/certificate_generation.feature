@@ -5,14 +5,14 @@ Feature: As a course administrator,
 
 
 Scenario: Generate certificates
-  Given the delivery for the course "Basic" is set to "2015-12-01"
+  Given the delivery for the course "Coding As A Craft Bootcamp" is set to "2015-12-01"
   And the data file for "2015-12-01" is imported
   And I am on 2015-12-01 show page
   And I click "Generate certificates" link
   # Then 3 certificates should be generated
   #And I am on 2015-12-01 show page
   # And 3 images of certificates should be created
-  And I should see 3 "view certificate" links
+  And I should see 1 "view certificate" links
 
 
 Scenario: Certificate generation is disabled if certificates exists
