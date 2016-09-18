@@ -12,6 +12,7 @@ gem 'rmagick'
 gem 'aws-sdk'
 gem 'dotenv'
 gem 'bitly'
+gem 'mail'
 
 group :development, :test do
   gem 'cucumber'

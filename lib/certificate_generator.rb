@@ -5,6 +5,7 @@ if ENV['RACK_ENV'] != 'production'
   require 'dotenv'
 end
 require 'bitly'
+require 'mail'
 
 module CertificateGenerator
   if ENV['RACK_ENV'] != 'production'
@@ -32,8 +33,10 @@ module CertificateGenerator
 
     make_prawn_document(details, certificate_output)
     make_rmagic_image(certificate_output, image_output)
-    if ENV['RACK_ENV'] != 'production'
+
+    if ENV['RACK_ENV'] == 'production'
       upload_to_s3(certificate_output, image_output)
+      send_email(details, file_name)
     end
 
 
@@ -78,6 +81,17 @@ module CertificateGenerator
     s3_certificate_object.upload_file(certificate_output, acl: 'public-read')
     s3_image_object = S3.bucket(ENV['S3_BUCKET']).object(image_output)
     s3_image_object.upload_file(image_output, acl: 'public-read')
+  end
+
+  def self.send_email(details, file)
+    mail = Mail.new do
+      from     "The course team <#{ENV['SENDGRID_USERNAME']}>"
+      to       "#{details[:name]} <#{details[:email]}>"
+      subject  "Course Certificate - #{details[:course_name]}"
+      body     File.read('pdf/templates/body.txt')
+      add_file filename: "#{file}.pdf", mime_type: 'application/x-pdf', content: File.read("#{PATH}#{file}.pdf")
+    end
+    mail.deliver
   end
 
 

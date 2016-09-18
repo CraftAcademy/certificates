@@ -236,6 +236,7 @@ DEPENDENCIES
   dm-postgres-adapter
   dm-rspec
   dotenv
+  mail
   padrino (~> 0.13.0)
   pg
   prawn
@@ -246,4 +247,4 @@ DEPENDENCIES
   tilt (~> 1.4, >= 1.4.1)
 
 BUNDLED WITH
-   1.10.6
+   1.12.5
