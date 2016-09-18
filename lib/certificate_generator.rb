@@ -1,16 +1,10 @@
 require 'prawn'
 require 'rmagick'
 require 'aws-sdk'
-if ENV['RACK_ENV'] != 'production'
-  require 'dotenv'
-end
 require 'bitly'
 require 'mail'
 
 module CertificateGenerator
-  if ENV['RACK_ENV'] != 'production'
-   Dotenv.load
-  end
   Bitly.use_api_version_3
   CURRENT_ENV = ENV['RACK_ENV'] || 'development'
   PATH = "pdf/#{CURRENT_ENV}/"
@@ -19,14 +13,32 @@ module CertificateGenerator
   S3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
   BITLY = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
 
-  def self.generate(certificate)
-    details = {name: certificate.student.full_name,
-               date: certificate.delivery.start_date.to_s,
-               course_name: certificate.delivery.course.title,
-               course_desc: certificate.delivery.course.description,
-               verify_url: [URL, certificate.identifier].join('')}
+  mail_options = {
+    address: ENV['SMTP_ADDRESS'],
+    port: ENV['SMTP_PORT'],
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
-    file_name = [details[:name], details[:date], details[:course_name]].join('_').downcase.gsub!(/\s/, '_')
+  Mail.defaults do
+    delivery_method :smtp, mail_options
+  end
+
+  def self.generate(certificate)
+    details = {
+      name: certificate.student.full_name,
+      date: certificate.delivery.start_date.to_s,
+      course_name: certificate.delivery.course.title,
+      course_desc: certificate.delivery.course.description,
+      verify_url: [URL, certificate.identifier].join('')
+    }
+
+    file_name = [
+      details[:name], details[:date], details[:course_name]
+    ].join('_').downcase.gsub!(/\s/, '_')
 
     certificate_output = "#{PATH}#{file_name}.pdf"
     image_output = "#{PATH}#{file_name}.jpg"
@@ -38,7 +50,6 @@ module CertificateGenerator
       upload_to_s3(certificate_output, image_output)
       send_email(details, file_name)
     end
-
 
     { certificate_key: certificate_output, image_key: image_output }
   end
@@ -86,7 +97,7 @@ module CertificateGenerator
 
   def self.send_email(details, file)
     mail = Mail.new do
-      from     "The course team <#{ENV['SENDGRID_USERNAME']}>"
+      from     "The course team <#{ENV['SMTP_FROM']}>"
       to       "#{details[:name]} <#{details[:email]}>"
       subject  "Course Certificate - #{details[:course_name]}"
       body     File.read('pdf/templates/body.txt')
@@ -95,12 +106,9 @@ module CertificateGenerator
     mail.deliver
   end
 
-
   def self.get_url(url)
-      begin
-        BITLY.shorten(url).short_url
-      rescue
-        url
-      end
+    BITLY.shorten(url).short_url
+  rescue
+    url
   end
 end
