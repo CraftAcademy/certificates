@@ -82,9 +82,9 @@ class WorkshopApp < Sinatra::Base
     redirect 'courses/index'
   end
 
-  get '/users/register' do
-    erb :'users/register'
-  end
+  # get '/users/register' do
+  #   erb :'users/register'
+  # end
 
   post '/users/create' do
     begin
