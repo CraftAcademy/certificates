@@ -5,12 +5,12 @@ Feature: As a course administrator,
 
 Scenario: List courses
   Given I am a registered and logged in user
-  When I click "All courses" link
+  When I click "All cohorts" link
   Then I should see "You have not created any courses"
 
 Scenario: Create a course
   Given I am a registered and logged in user
-  When I click "All courses" link
+  When I click "All cohorts" link
   And I click "Create course" link
   And I fill in "Course Title" with "Basic programming"
   And I fill in "Course description" with "Your first step into the world of programming"
@@ -21,7 +21,7 @@ Scenario: Create a course
 
 Scenario: Non logged in user can not create course
   Given I am on the home page
-  And I click "All courses" link
+  And I click "All cohorts" link
   Then I should not see "Create course"
 
 Scenario: Non logged in user can not access the create new course form

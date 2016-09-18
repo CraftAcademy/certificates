@@ -32,8 +32,10 @@ module CertificateGenerator
 
     make_prawn_document(details, certificate_output)
     make_rmagic_image(certificate_output, image_output)
+    if ENV['RACK_ENV'] != 'production'
+      upload_to_s3(certificate_output, image_output)
+    end
 
-    upload_to_s3(certificate_output, image_output)
 
     { certificate_key: certificate_output, image_key: image_output }
   end

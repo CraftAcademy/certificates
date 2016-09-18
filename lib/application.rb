@@ -30,7 +30,6 @@ class WorkshopApp < Sinatra::Base
 
 
 
-
   before do
     @user = User.get(session[:user_id]) unless is_user?
   end

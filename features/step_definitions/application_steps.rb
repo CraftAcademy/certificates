@@ -8,7 +8,7 @@ Then(/^a new "([^"]*)" should be created$/) do |model|
 end
 
 Given(/^I am a registered user$/) do
-  steps %(
+  steps %q(
     Given I am on the home page
     And I click "Register" link
     Then I should be on Registration page
@@ -21,7 +21,7 @@ Given(/^I am a registered user$/) do
 end
 
 Given(/^I am a registered and logged in user$/) do
-  steps %(
+  steps %q(
     Given I am a registered user
     And I am on the home page
     And I click "Log in" link
@@ -33,10 +33,10 @@ Given(/^I am a registered and logged in user$/) do
 end
 
 Given(/^the course "([^"]*)" is created$/) do |name|
-  steps %(
+  steps %Q(
     Given I am on the home page
     And I am a registered and logged in user
-    And I click "All courses" link
+    And I click "All cohorts" link
     And I click "Create course" link
     And I fill in "Course Title" with "#{name}"
     And I fill in "Course description" with "Your first step into the world of programming"
@@ -88,7 +88,7 @@ And(/^([^"]*) images of certificates should be created$/) do |count|
 end
 
 Given(/^valid certificates exists$/) do
-  steps %(
+  steps %q(
     Given the delivery for the course "Basic" is set to "2015-12-01"
     And the data file for "2015-12-01" is imported
     And I am on 2015-12-01 show page
