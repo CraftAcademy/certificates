@@ -18,6 +18,7 @@ gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rvm'
 gem 'capistrano-passenger'
+gem 'capistrano-env-config'
 
 group :development, :test do
   gem 'cucumber'
