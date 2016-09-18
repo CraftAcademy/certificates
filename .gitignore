@@ -2,4 +2,6 @@
 pdf/test/*
 .DS_Store
 .idea/
-pdf/
+pdf/development/*
+
+pdf/production/*
