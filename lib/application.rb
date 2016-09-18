@@ -1,10 +1,11 @@
 require 'sinatra/base'
 require 'padrino-helpers'
 require 'data_mapper'
+
 if ENV['RACK_ENV'] != 'production'
   require 'pry'
-  require 'dotenv'
 end
+
 require './lib/csv_parse'
 require './lib/course'
 require './lib/user'
@@ -13,9 +14,6 @@ require './lib/student'
 require './lib/certificate'
 
 class WorkshopApp < Sinatra::Base
-  if ENV['RACK_ENV'] != 'production'
-    Dotenv.load
-  end
   include CSVParse
   register Padrino::Helpers
   set :protect_from_csrf, true
