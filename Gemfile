@@ -14,6 +14,11 @@ gem 'dotenv'
 gem 'bitly'
 gem 'mail'
 
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rvm'
+gem 'capistrano-passenger'
+
 group :development, :test do
   gem 'cucumber'
   gem 'cucumber-sinatra'
