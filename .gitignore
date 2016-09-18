@@ -3,5 +3,3 @@ pdf/test/*
 .DS_Store
 .idea/
 pdf/development/*
-
-pdf/production/*
