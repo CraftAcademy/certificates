@@ -28,4 +28,5 @@ group :development, :test do
   gem 'dm-rspec'
   gem 'database_cleaner'
   gem 'pry'
+  gem 'pry-byebug'
 end
