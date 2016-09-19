@@ -79,8 +79,8 @@ module CertificateGenerator
       pdf.text details[:course_desc], indent_paragraphs: indent_px, size: 20, color: 'D3D3D3'
       pdf.move_down 75
       pdf.text "Gothenburg #{details[:date]}", align: :right, size: 12, color: 'ffffff'
-      # pdf.move_down 95
-      # pdf.text "To verify the authenticity of this Certificate, please visit: #{get_url(details[:verify_url])}", indent_paragraphs: indent_px, size: 8, color: 'ffffff'
+      pdf.move_down 95
+      pdf.text "To verify the authenticity of this Certificate, please visit: #{get_url(details[:verify_url])}", indent_paragraphs: indent_px, size: 8, color: 'ffffff'
     end
   end
 
