@@ -5,9 +5,9 @@ Feature: As a course administrator,
 
 
 Scenario: Generate certificates
-  Given the delivery for the course "Coding As A Craft Bootcamp" is set to "2015-12-01"
-  And the data file for "2015-12-01" is imported
-  And I am on 2015-12-01 show page
+  Given the delivery for the course "Coding As A Craft" is set to "2016-09-16"
+  And the data file for "2016-09-16" is imported
+  And I am on 2016-09-16 show page
   And I click "Generate certificates" link
   # Then 3 certificates should be generated
   #And I am on 2015-12-01 show page

@@ -3,8 +3,14 @@ require 'rmagick'
 require 'aws-sdk'
 require 'bitly'
 require 'mail'
+if ENV['RACK_ENV'] != 'production'
+  require 'dotenv'
+end
 
 module CertificateGenerator
+  if ENV['RACK_ENV'] != 'production'
+    Dotenv.load
+  end
   Bitly.use_api_version_3
   CURRENT_ENV = ENV['RACK_ENV'] || 'development'
   PATH = "pdf/#{CURRENT_ENV}/"
@@ -78,8 +84,8 @@ module CertificateGenerator
       pdf.text details[:course_desc], indent_paragraphs: intent_px, size: 20, color: 'D3D3D3'
       pdf.move_down 75
       pdf.text "Gothenburg #{details[:date]}", align: :right, size: 12, color: 'ffffff'
-      pdf.move_down 95
-      pdf.text "To verify the authenticity of this Certificate, please visit: #{get_url(details[:verify_url])}", indent_paragraphs: intent_px, size: 8, color: 'ffffff'
+      #pdf.move_down 95
+      #pdf.text "To verify the authenticity of this Certificate, please visit: #{get_url(details[:verify_url])}", indent_paragraphs: intent_px, size: 8, color: 'ffffff'
     end
   end
 
