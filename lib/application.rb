@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'padrino-helpers'
 require 'data_mapper'
+require 'dotenv'
+Dotenv.load
 
 if ENV['RACK_ENV'] != 'production'
   require 'pry'

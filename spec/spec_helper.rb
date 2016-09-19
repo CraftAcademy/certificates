@@ -8,7 +8,6 @@ require 'dm-rspec'
 require 'bcrypt'
 require 'database_cleaner'
 
-
 RSpec.configure do |config|
   config.include Capybara::DSL
   config.include DataMapper::Matchers
@@ -22,8 +21,8 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
@@ -31,6 +30,6 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-      DatabaseCleaner.clean
+    DatabaseCleaner.clean
   end
 end
