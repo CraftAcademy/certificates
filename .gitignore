@@ -3,3 +3,4 @@ pdf/test/*
 .DS_Store
 .idea/
 pdf/development/*
+pdf/templates/ca-certificate.ai

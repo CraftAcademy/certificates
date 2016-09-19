@@ -8,16 +8,17 @@ Then(/^a new "([^"]*)" should be created$/) do |model|
 end
 
 Given(/^I am a registered user$/) do
-  steps %q(
-    Given I am on the home page
-    And I click "Register" link
-    Then I should be on Registration page
-    And I fill in "Name" with "Thomas"
-    And I fill in "Email" with "thomas@random.com"
-    And I fill in "Password" with "my_password"
-    And I fill in "Password confirmation" with "my_password"
-    And I click "Create" link
-  )
+  # steps %q(
+  #   Given I am on the home page
+  #   And I click "Register" link
+  #   Then I should be on Registration page
+  #   And I fill in "Name" with "Thomas"
+  #   And I fill in "Email" with "thomas@random.com"
+  #   And I fill in "Password" with "my_password"
+  #   And I fill in "Password confirmation" with "my_password"
+  #   And I click "Create" link
+  # )
+  User.create(name: 'Thomas', email: 'thomas@random.com', password: 'my_password', password_confirmation: 'my_password')
 end
 
 Given(/^I am a registered and logged in user$/) do
@@ -39,7 +40,7 @@ Given(/^the course "([^"]*)" is created$/) do |name|
     And I click "All cohorts" link
     And I click "Create course" link
     And I fill in "Course Title" with "#{name}"
-    And I fill in "Course description" with "A 12 Week Full-Stack Web Developer Programme"
+    And I fill in "Course description" with "A 12 Week Full-Stack Web Developer Program"
     And I click "Create" link
   )
 end
