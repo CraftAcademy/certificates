@@ -9,7 +9,7 @@ set :passenger_restart_with_touch, true
 append :linked_files, '.env'
 
 # Default value for linked_dirs is []
-append :linked_dirs, 'pdf'
+# append :linked_dirs, 'pdf'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
