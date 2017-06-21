@@ -72,11 +72,11 @@ module CertificateGenerator
     Prawn::Document.generate(output, pdf_opts) do |pdf|
       pdf.move_down 215
       pdf.font 'assets/fonts/Gotham-Medium.ttf'
-      pdf.text details[:name], size: 40, color: 'D3D3D3', indent_paragraphs: indent_px
+      pdf.text details[:name], size: 40, color: 'FCFCFC', indent_paragraphs: indent_px
       pdf.move_down 55
       pdf.font 'assets/fonts/Gotham-Medium.ttf'
-      pdf.text details[:course_name], indent_paragraphs: indent_px, size: 30, color: 'D3D3D3'
-      pdf.text details[:course_desc], indent_paragraphs: indent_px, size: 20, color: 'D3D3D3'
+      pdf.text details[:course_name], indent_paragraphs: indent_px, size: 30, color: 'FCFCFC'
+      pdf.text details[:course_desc], indent_paragraphs: indent_px, size: 20, color: 'FCFCFC'
       pdf.move_down 75
       pdf.text "Gothenburg #{details[:date]}", align: :right, size: 12, color: 'ffffff'
       pdf.move_down 95
