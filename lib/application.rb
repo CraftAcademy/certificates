@@ -154,7 +154,6 @@ class WorkshopApp < Sinatra::Base
 
     delivery.students.each do |student|
       cert = student.certificates.last
-      binding.pry
       Mailer.send_mail(cert.details, cert.filename)
     end
 
