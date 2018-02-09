@@ -4,7 +4,7 @@ module CSVParse
   def self.import(file, obj, parent)
     csv_import_opts = {
       quote_char: '"', col_sep: ';', row_sep: :auto, headers: true,
-      header_converters: :symbol, converters: :all
+      header_converters: :symbol, converters: :all, encoding: 'UTF-8'
     }
 
     import = CSV.read(file, csv_import_opts).collect do |row|
