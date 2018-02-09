@@ -6,4 +6,4 @@
 server ENV['PROD_SERVER'], user: ENV['SSH_USER'], roles: %w(app web)
 set :branch, 'master'
 set :deploy_to, ENV['PROD_PATH']
-set :rvm_ruby_version, '2.1.2'
+set :rvm_ruby_version, '2.3.4'

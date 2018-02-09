@@ -134,6 +134,8 @@ GEM
     json (1.8.3)
     json_pure (1.8.3)
     jwt (1.5.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -272,6 +274,7 @@ DEPENDENCIES
   dm-postgres-adapter
   dm-rspec
   dotenv
+  launchy
   mail
   padrino (~> 0.13.0)
   pg
@@ -284,4 +287,4 @@ DEPENDENCIES
   tilt (~> 1.4, >= 1.4.1)
 
 BUNDLED WITH
-   1.12.5
+   1.16.0

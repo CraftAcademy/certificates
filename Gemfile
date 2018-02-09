@@ -21,12 +21,13 @@ gem 'capistrano-passenger'
 gem 'capistrano-env-config'
 
 group :development, :test do
+  gem 'capybara'
   gem 'cucumber'
   gem 'cucumber-sinatra'
-  gem 'capybara'
-  gem 'rspec'
-  gem 'dm-rspec'
   gem 'database_cleaner'
+  gem 'dm-rspec'
+  gem 'launchy'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'rspec'
 end
