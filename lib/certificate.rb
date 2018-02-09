@@ -56,4 +56,22 @@ class Certificate
     "#{server}#{self.identifier}"
   end
 
+  def details
+    @details ||= {
+      name: self.student.full_name,
+      date: self.delivery.start_date.to_s,
+      email: self.student.email,
+      course_name: self.delivery.course.title,
+      course_desc: self.delivery.course.description,
+      verify_url: [URL, self.identifier].join('')
+    }
+  end
+
+  def filename
+    @filename ||= [
+      self.details[:name],
+      self.details[:date],
+      self.details[:course_name]
+    ].join('_').downcase.gsub!(/\s/, '_')
+  end
 end

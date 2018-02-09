@@ -12,10 +12,16 @@
         </li>
       <% end %>
     </ul>
-    <% if current_user && @delivery.certificates.all(delivery_id: @delivery.id).empty? %>
-      <div>
-        <%= link_to 'Generate certificates', "/courses/generate/#{@delivery.id}", class: 'button' %>
-      </div>
+    <% if current_user %>
+      <% if @delivery.certificates.all(delivery_id: @delivery.id).empty? %>
+        <div>
+          <%= link_to 'Generate certificates', "/courses/generate/#{@delivery.id}", class: 'button' %>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to 'Email certificates', "/courses/deliveries/#{@delivery.id}/send_mail", class: 'button' %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% elsif current_user %>

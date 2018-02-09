@@ -16,6 +16,8 @@ require './lib/delivery'
 require './lib/student'
 require './lib/certificate'
 
+require './lib/mailer'
+
 class WorkshopApp < Sinatra::Base
   include CSVParse
   register Padrino::Helpers
@@ -127,7 +129,6 @@ class WorkshopApp < Sinatra::Base
   end
 
   post '/courses/deliveries/file_upload' do
-    #binding.pry
     delivery = Delivery.get(params[:id].to_i)
     CSVParse.import(params[:file][:tempfile], Student, delivery)
     redirect "/courses/deliveries/show/#{delivery.id}"
@@ -139,13 +140,25 @@ class WorkshopApp < Sinatra::Base
       session[:flash] = 'Certificates has already been generated'
     else
       delivery.students.each do |student|
-        #binding.pry
         cert = student.certificates.create(created_at: DateTime.now, delivery: delivery)
         keys = CertificateGenerator.generate(cert)
         cert.update(certificate_key: keys[:certificate_key], image_key: keys[:image_key])
       end
       session[:flash] = "Generated #{delivery.students.count} certificates"
     end
+    redirect "/courses/deliveries/show/#{delivery.id}"
+  end
+
+  get '/courses/deliveries/:id/send_mail', auth: :user do
+    delivery = Delivery.get(params[:id])
+
+    delivery.students.each do |student|
+      cert = student.certificates.last
+      binding.pry
+      Mailer.send_mail(cert.details, cert.filename)
+    end
+
+    session[:flash] = 'Email(s) sent to student(s)'
     redirect "/courses/deliveries/show/#{delivery.id}"
   end
 
