@@ -8,8 +8,8 @@ module CertificateGenerator
   Dotenv.load
   Bitly.use_api_version_3
   CURRENT_ENV = ENV['RACK_ENV'] || 'development'
-  PATH = "pdf/#{CURRENT_ENV}/"
-  TEMPLATE = File.absolute_path('./pdf/templates/ca-certificate.jpg')
+  PATH = "pdf/#{CURRENT_ENV}/".freeze
+
   URL = ENV['SERVER_URL'] || 'http://localhost:9292/verify/'
   S3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
   BITLY = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
@@ -31,11 +31,13 @@ module CertificateGenerator
   # private
 
   def self.make_prawn_document(details, output)
+    type = details.completed ? 'excellence' : 'participation'
+    template = File.absolute_path("./pdf/templates/ca-certificate-of-#{type}.jpg")
     indent_px = 270
     File.delete(output) if File.exist?(output)
 
     pdf_opts = {
-      page_size: 'A4', background: TEMPLATE, background_scale: 0.5,
+      page_size: 'A4', background: template, background_scale: 0.5,
       page_layout: :landscape, left_margin: 0, right_margin: 30,
       top_margin: 0, bottom_margin: 0, skip_encoding: true
     }

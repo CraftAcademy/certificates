@@ -61,6 +61,7 @@ class Certificate
       name: self.student.full_name,
       date: self.delivery.start_date.to_s,
       email: self.student.email,
+      completed: self.student.completed,
       course_name: self.delivery.course.title,
       course_desc: self.delivery.course.description,
       verify_url: [URL, self.identifier].join('')
