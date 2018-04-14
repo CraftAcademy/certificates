@@ -31,7 +31,7 @@ module CertificateGenerator
   # private
 
   def self.make_prawn_document(details, output)
-    type = details.completed ? 'excellence' : 'participation'
+    type = details[:completed] ? 'excellence' : 'participation'
     template = File.absolute_path("./pdf/templates/ca-certificate-of-#{type}.jpg")
     indent_px = 270
     File.delete(output) if File.exist?(output)
