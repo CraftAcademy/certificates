@@ -4,3 +4,4 @@ pdf/test/*
 .idea/
 pdf/development/*
 pdf/templates/ca-certificate.ai
+log/

@@ -2,7 +2,9 @@
 lock '3.14.1'
 
 set :application, 'ca_certificates'
-set :repo_url, 'git@github.com:CraftAcademy/certificates.git'
+# set :repo_url, 'git@github.com:CraftAcademy/certificates.git'
+set :repo_url, "https://#{ENV['GH_USER']}:#{ENV['GH_PASSWORD']}@github.com/CraftAcademy/certificates"
+
 set :passenger_restart_with_touch, true
 
 # Default value for :linked_files is []
