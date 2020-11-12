@@ -8,16 +8,6 @@ Then(/^a new "([^"]*)" should be created$/) do |model|
 end
 
 Given(/^I am a registered user$/) do
-  # steps %q(
-  #   Given I am on the home page
-  #   And I click "Register" link
-  #   Then I should be on Registration page
-  #   And I fill in "Name" with "Thomas"
-  #   And I fill in "Email" with "thomas@random.com"
-  #   And I fill in "Password" with "my_password"
-  #   And I fill in "Password confirmation" with "my_password"
-  #   And I click "Create" link
-  # )
   User.create(name: 'Thomas', email: 'thomas@random.com', password: 'my_password', password_confirmation: 'my_password')
 end
 

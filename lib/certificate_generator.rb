@@ -6,10 +6,8 @@ require 'dotenv'
 
 module CertificateGenerator
   Dotenv.load
-  # Bitly.use_api_version_3
   CURRENT_ENV = ENV['RACK_ENV'] || 'development'
   PATH = "pdf/#{CURRENT_ENV}/".freeze
-
   URL = ENV['SERVER_URL'] || 'http://localhost:9292/verify/'
   S3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
   BITLY = Bitly::API::Client.new(token: ENV['BITLY_TOKEN'])
@@ -17,7 +15,6 @@ module CertificateGenerator
   def self.generate(certificate)
     certificate_output = "#{PATH}#{certificate.filename}.pdf"
     image_output = "#{PATH}#{certificate.filename}.jpg"
-
     make_prawn_document(certificate.details, certificate_output)
     make_rmagic_image(certificate_output, image_output)
 
@@ -28,10 +25,16 @@ module CertificateGenerator
     { certificate_key: certificate_output, image_key: image_output }
   end
 
-  # private
-
   def self.make_prawn_document(details, output)
-    type = details[:completed] ? 'excellence' : 'participation'
+    # type = details[:completed] ? 'excellence' : 'participation'
+    case details[:type]
+    when 1
+      type = 'excellence'
+    when 2
+      type = 'completion'
+    when 3
+      type = 'participation'
+    end
     template = File.absolute_path("./pdf/templates/ca-certificate-of-#{type}.jpg")
     indent_px = 270
     File.delete(output) if File.exist?(output)
@@ -52,8 +55,8 @@ module CertificateGenerator
       pdf.text details[:course_desc], indent_paragraphs: indent_px, size: 20, color: 'FCFCFC'
       pdf.move_down 75
       pdf.text "Gothenburg #{details[:date]}", align: :right, size: 12, color: 'ffffff'
-      pdf.move_down 95
-      pdf.text "To verify the authenticity of this Certificate, please visit: #{get_url(details[:verify_url])}", indent_paragraphs: indent_px, size: 8, color: 'ffffff'
+      pdf.move_down 105
+      pdf.text "To verify the authenticity of this Certificate, please visit: #{get_url(details[:verify_url])}", indent_paragraphs: (indent_px - 200), size: 8, color: 'ffffff'
     end
   end
 

@@ -42,7 +42,6 @@ class Certificate
   end
 
   def stats
-    # Bitly.use_api_version_3
     bitly = Bitly::API::Client.new(token: ENV['BITLY_TOKEN'])
     begin
       bitly.lookup(self.bitly_lookup).global_clicks
@@ -62,6 +61,7 @@ class Certificate
       date: self.delivery.start_date.to_s,
       email: self.student.email,
       completed: self.student.completed,
+      type: self.student.type,
       course_name: self.delivery.course.title,
       course_desc: self.delivery.course.description,
       verify_url: [URL, self.identifier].join('')
