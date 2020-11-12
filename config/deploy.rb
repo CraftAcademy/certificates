@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock '3.14.1'
 
 set :application, 'ca_certificates'
 set :repo_url, 'git@github.com:CraftAcademy/certificates.git'
