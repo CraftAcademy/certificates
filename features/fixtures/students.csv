@@ -1,5 +1,5 @@
-full_name; email
-Thomas Ochman;thomas@craftacademy.se
-Mikael Feher;mikaelf@tld.com
-Ólöf Vignisdóttir;olofv@tld.com
-Magnús Þór Ársælsson;magnus.thor.ar@tld.com
+full_name;email;type
+Thomas Ochman;thomas@craftacademy.se;1
+Mikael Feher;mikaelf@tld.com;3
+Ólöf Vignisdóttir;olofv@tld.com;3
+Magnús Þór Ársælsson;magnus.thor.ar@tld.com;2

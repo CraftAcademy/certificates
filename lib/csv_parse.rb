@@ -25,7 +25,7 @@ module CSVParse
         { full_name: data[:full_name] },
         full_name: data[:full_name],
         email: data[:email],
-        completed: data[:completed]
+        type: data[:type]
       )
 
       student.deliveries << parent unless student.deliveries.include? parent
