@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'tilt', '~> 1.4', '>= 1.4.1'
-gem 'padrino', '~> 0.13.0'
+# gem 'tilt', '~> 1.4', '>= 1.4.1'
+gem 'tilt', '~> 2.0', '>= 2.0.10'
+# gem 'padrino', '~> 0.13.0'
+gem 'padrino', '~> 0.15.0'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'

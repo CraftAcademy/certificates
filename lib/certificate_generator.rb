@@ -6,13 +6,13 @@ require 'dotenv'
 
 module CertificateGenerator
   Dotenv.load
-  Bitly.use_api_version_3
+  # Bitly.use_api_version_3
   CURRENT_ENV = ENV['RACK_ENV'] || 'development'
   PATH = "pdf/#{CURRENT_ENV}/".freeze
 
   URL = ENV['SERVER_URL'] || 'http://localhost:9292/verify/'
   S3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-  BITLY = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+  BITLY = Bitly::API::Client.new(token: ENV['BITLY_TOKEN'])
 
   def self.generate(certificate)
     certificate_output = "#{PATH}#{certificate.filename}.pdf"

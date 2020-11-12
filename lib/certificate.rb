@@ -42,8 +42,8 @@ class Certificate
   end
 
   def stats
-    Bitly.use_api_version_3
-    bitly = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+    # Bitly.use_api_version_3
+    bitly = Bitly::API::Client.new(token: ENV['BITLY_TOKEN'])
     begin
       bitly.lookup(self.bitly_lookup).global_clicks
     rescue
