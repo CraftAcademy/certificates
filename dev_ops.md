@@ -13,32 +13,38 @@ $ ssh soundblab@craftacademy.se
 
 root directory: `/var/www/html/ca-certificates`
 
+## Deployment
+We are deploying using Capistrano
 
+Your `.env` file need to contain the right information
 
-## ImageMagick issues
-install_name_tool -change \
-    /ImageMagick-7.0.10-37/lib/libMagickCore-7.Q16HDRI.6.dylib \
-    @executable_path/../lib/libMagickCore-7.Q16HDRI.6.dylib \
-    /Users/thomas_ochman/ImageMagick/bin/magick
+S3_BUCKET=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=us-east-1
+SERVER_URL=https://certificates.craftacademy.se/verify/
+BITLY_USERNAME=
+BITLY_API_KEY=
+BITLY_TOKEN=
+DATABASE_URL=
 
-# magick: set the correct path to libMagickWand.dylib
-install_name_tool -change \
-    /ImageMagick-7.0.10-37/lib/libMagickWand-7.Q16HDRI.6.dylib \
-    @executable_path/../lib/libMagickWand-7.Q16HDRI.6.dylib \
-    /Users/thomas_ochman/ImageMagick-7.0.8/bin/magick
+# SMTP Settings
+SMTP_ADDRESS=
+SMTP_PORT=
+SMTP_DOMAIN=certificates.craftacademy.se
+SMTP_USERNAME=ca-certificates
+SMTP_PASSWORD=
+SMTP_FROM=thomas@craftacademy.se
 
-# libMagickWand.dylib: set the correct ID
-install_name_tool -id \
-    @executable_path/../lib/libMagickWand-7.Q16HDRI.6.dylib \
-    /Users/thomas_ochman/ImageMagick-7.0.8/lib/libMagickWand-7.Q16HDRI.6.dylib
+SSH_USER=soundblab
+PROD_SERVER=craftacademy.se
+PROD_PATH=/var/www/html/ca-certificates
 
-# libMagickWand.dylib: set the correct path
-install_name_tool -change \
-    /ImageMagick-7.0.8/lib/libMagickCore-7.Q16HDRI.6.dylib \
-    @executable_path/../lib/libMagickCore-7.Q16HDRI.6.dylib \
-    /Users/thomas_ochman/ImageMagick-7.0.8/lib/libMagickWand-7.Q16HDRI.6.dylib
+GH_USER=
+GH_PASSWORD=
+```
 
-# libMagickCore.dylib: set the correct ID
-install_name_tool -id \
-    @executable_path/../lib/libMagickCore-7.Q16HDRI.6.dylib \
-    /Users/thomas_ochman/ImageMagick-7.0.8/lib/libMagickCore-7.Q16HDRI.6.dylib
+Deploy with thefollowingg command
+```
+$ cap production deploy --trace
+```
