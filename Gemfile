@@ -17,7 +17,7 @@ gem 'bitly'
 gem 'mail'
 
 gem 'capistrano'
-gem 'capistrano-bundler'
+gem 'capistrano-bundler', '~> 2.0', '>= 2.0.1'
 gem 'capistrano-rvm'
 gem 'capistrano-passenger'
 gem 'capistrano-env-config'

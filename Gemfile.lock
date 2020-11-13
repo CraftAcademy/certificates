@@ -1227,7 +1227,7 @@ DEPENDENCIES
   bcrypt
   bitly
   capistrano
-  capistrano-bundler
+  capistrano-bundler (~> 2.0, >= 2.0.1)
   capistrano-env-config
   capistrano-passenger
   capistrano-rvm
