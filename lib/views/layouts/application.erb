@@ -48,13 +48,13 @@
 
 <div class="row">
   <div class="medium-12 large-12 columns">
-    <% unless session[:flash].blank? %>
+    <% unless session[:flash].try(:blank?)%>
 
       <div id="flash-container" data-alert class="alert-box info">
         <%= session[:flash] %>
         <a href="#" class="close">&times;</a>
       </div>
-      <% session[:flash].clear %>
+      <% session[:flash].try(:clear) %>
     <% end %>
 
     <%= yield %>

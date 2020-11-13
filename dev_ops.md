@@ -17,7 +17,7 @@ root directory: `/var/www/html/ca-certificates`
 We are deploying using Capistrano
 
 Your `.env` file need to contain the right information
-
+```
 S3_BUCKET=
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
@@ -47,4 +47,35 @@ GH_PASSWORD=
 Deploy with thefollowingg command
 ```
 $ cap production deploy --trace
+```
+
+
+## Notes
+
+Updating ruby means that you have to reinstall a lot of gems and change all configuration to the new ruby wrapper. Also in site configuration.
+## Server commands
+
+
+
+Display error logs
+```
+sudo tail -f /var/log/apache2/error.log
+```
+
+List available sites:
+
+```
+ls /etc/apache2/sites-available/
+```
+
+Restart Apache server
+
+```
+sudo service apache2 reload
+```
+
+Enable/Disable the app
+```
+sudo a2ensite certificates
+a2dissite certificates.conf
 ```
