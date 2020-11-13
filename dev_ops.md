@@ -48,7 +48,11 @@ Deploy with thefollowingg command
 ```
 $ cap production deploy --trace
 ```
+Deplouy command:
 
+```
+bundle exec cap production deploy --trace
+```
 
 ## Notes
 
