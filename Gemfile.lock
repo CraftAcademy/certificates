@@ -1093,7 +1093,7 @@ GEM
     highline (2.0.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     json (1.8.6)
     json_pure (1.8.6)
     jwt (2.2.2)
